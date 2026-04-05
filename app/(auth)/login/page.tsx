@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PixelButton } from "@/components/ui/FlowButton";
-import { PixelInput } from "@/components/ui/FlowInput";
+import { FlowButton } from "@/components/ui/FlowButton";
+import { FlowInput } from "@/components/ui/FlowInput";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -41,7 +41,7 @@ export default function LoginPage() {
       {/* Left — dekorativni monolith */}
       <div className="hidden lg:flex w-1/2 border-r-4 border-primary flex-col justify-between p-section">
         <span className="text-label uppercase tracking-widest text-primary-soft">
-          PixelQuest / v1.0
+          Flow Quest / v1.0
         </span>
         <div>
           <h1 className="text-display font-bold text-primary leading-none">
@@ -72,14 +72,14 @@ export default function LoginPage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <PixelInput
+            <FlowInput
               label="Email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="hero@quest.com"
             />
-            <PixelInput
+            <FlowInput
               label="Password"
               type="password"
               value={password}
@@ -95,13 +95,13 @@ export default function LoginPage() {
           )}
 
           <div className="flex flex-col gap-4">
-            <PixelButton
+            <FlowButton
               onClick={handleLogin}
               disabled={loading}
               className="w-full"
             >
               {loading ? "Loading..." : "Start Quest →"}
-            </PixelButton>
+            </FlowButton>
 
             <p className="text-sm text-primary-soft">
               New hero?{" "}

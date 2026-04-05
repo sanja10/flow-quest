@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PixelButton } from "@/components/ui/FlowButton";
-import { PixelInput } from "@/components/ui/FlowInput";
+import { FlowButton } from "@/components/ui/FlowButton";
+import { FlowInput } from "@/components/ui/FlowInput";
 import Link from "next/link";
 
 export default function RegisterPage() {
@@ -45,20 +45,20 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm border-2 border-pq-light p-8 flex flex-col gap-6">
         {/* Logo */}
         <div className="text-center flex flex-col gap-2">
-          <h1 className="font-pixel text-pq-gold text-lg">⚔️ Flow Quest</h1>
-          <p className="font-pixel text-pq-light text-xs">Create your hero</p>
+          <h1 className="font-label text-pq-gold text-lg">⚔️ Flow Quest</h1>
+          <p className="font-label text-pq-light text-xs">Create your hero</p>
         </div>
 
         {/* Form */}
         <div className="flex flex-col gap-4">
-          <PixelInput
+          <FlowInput
             label="EMAIL"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="hero@quest.com"
           />
-          <PixelInput
+          <FlowInput
             label="PASSWORD"
             type="password"
             value={password}
@@ -68,14 +68,14 @@ export default function RegisterPage() {
         </div>
 
         {error && (
-          <p className="font-pixel text-xs text-pq-red text-center">{error}</p>
+          <p className="font-label text-xs text-pq-red text-center">{error}</p>
         )}
 
-        <PixelButton onClick={handleRegister} disabled={loading}>
+        <FlowButton onClick={handleRegister} disabled={loading}>
           {loading ? "LOADING..." : "⚔️ CREATE HERO"}
-        </PixelButton>
+        </FlowButton>
 
-        <p className="font-pixel text-xs text-pq-light text-center">
+        <p className="font-label text-xs text-pq-light text-center">
           Already a hero?{" "}
           <Link href="/login" className="text-pq-gold hover:underline">
             LOGIN

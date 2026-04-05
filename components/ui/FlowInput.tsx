@@ -1,17 +1,17 @@
 import { InputHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-interface PixelInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface FlowInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
 }
 
-export function PixelInput({
+export function FlowInput({
   label,
   error,
   className,
   ...props
-}: PixelInputProps) {
+}: FlowInputProps) {
   return (
     <div className="flex flex-col gap-2">
       <label className="text-label uppercase tracking-widest text-primary-soft">
