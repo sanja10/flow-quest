@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  createdAt    DateTime   @default(now())
+
+  heroStats    HeroStats?
+  quests       Quest[]
+  xpLogs       XpLog[]
+  refreshTokens RefreshToken[]
+}
+
+model HeroStats {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id])
+  xp         Int      @default(0)
+  hp         Int      @default(100)
+  maxHp      Int      @default(100)
+  level      Int      @default(1)
+  streak     Int      @default(0)
+  lastActive DateTime @default(now())
+}
+
+model Quest {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  title       String
+  description String?
+  difficulty  Difficulty  @default(MEDIUM)
+  status      Status      @default(TODO)
+  xpReward    Int         @default(50)
+  deadline    DateTime?
+  createdAt   DateTime    @default(now())
+  completedAt DateTime?
+
+  xpLogs      XpLog[]
+}
+
+model XpLog {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  questId   String?
+  quest     Quest?   @relation(fields: [questId], references: [id])
+  xpGained  Int
+  reason    String
+  createdAt DateTime @default(now())
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum Status {
+  TODO
+  IN_PROGRESS
+  DONE
+}
